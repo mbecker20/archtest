@@ -4,7 +4,7 @@ extern crate log;
 use client::Client;
 use serde::Deserialize;
 use simple_logger::SimpleLogger;
-use types::api::requests;
+use types::api::{requests, Id};
 
 mod client;
 
@@ -24,13 +24,21 @@ async fn main() -> anyhow::Result<()> {
         .init()?;
     let env: Env = envy::from_env()?;
 
-    info!("version: {}", env!("CARGO_PKG_VERSION"));
+    info!("client version: {}", env!("CARGO_PKG_VERSION"));
 
     let client = Client::new(env.api_url);
 
     let version = client.request::<requests::GetVersion>(()).await?.version;
 
-    println!("server version: {version}");
+    info!("server version: {version}");
+
+    let server = client.request::<requests::GetServer>(Id::new("server_id")).await?;
+
+    info!("server: {server:?}");
+
+    let deployment = client.request::<requests::GetDeployment>(Id::new("deployment_id")).await?;
+
+    info!("deployment: {deployment:?}");
 
     Ok(())
 }

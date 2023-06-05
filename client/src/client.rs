@@ -1,5 +1,6 @@
 use anyhow::{anyhow, Context};
 use reqwest::StatusCode;
+use serde_json::json;
 use types::api::RequestResponse;
 
 pub struct Client {
@@ -19,21 +20,19 @@ impl Client {
         &self,
         request: T::Request,
     ) -> anyhow::Result<T::Response> {
-        trace!(
-            "sending request | type: {} | body: {request:?}",
-            T::req_type()
-        );
+        let req_type = T::req_type();
+        trace!("sending request | type: {req_type} | body: {request:?}");
         let res = self
             .reqwest
             .post(&self.api_url)
-            .json(&request)
+            .json(&json!({
+                "type": req_type,
+                "data": request
+            }))
             .send()
             .await?;
         let status = res.status();
-        trace!(
-            "got response | type: {} | {status} | body: {res:?}",
-            T::req_type()
-        );
+        trace!("got response | type: {req_type} | {status} | body: {res:?}",);
         if status == StatusCode::OK {
             res.json().await.context("failed to parse response to json")
         } else {

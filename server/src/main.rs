@@ -3,7 +3,10 @@ extern crate log;
 
 use std::sync::Arc;
 
-use axum::{extract::State, http::StatusCode, routing::post, Json, Router};
+use axum::{
+    extract::State, headers::ContentType, http::StatusCode, routing::post, Json, Router,
+    TypedHeader,
+};
 use simple_logger::SimpleLogger;
 use state::AppState;
 use types::api::Request;
@@ -34,15 +37,15 @@ async fn main() {
             "/api",
             post(
                 |state: State<Arc<AppState>>, Json(request): Json<Request>| async move {
-                    debug!("got request: {:?}", request);
+                    info!("got request: {:?}", request);
                     let res = state
                         .handle_request(request)
                         .await
                         .map_err(|e| (StatusCode::INTERNAL_SERVER_ERROR, format!("{e:?}")));
                     if let Err(e) = &res {
-                        debug!("request error: {e:?}");
+                        info!("request error: {e:?}");
                     }
-                    Result::<_, (StatusCode, String)>::Ok(Json(res?))
+                    Result::<_, (StatusCode, String)>::Ok((TypedHeader(ContentType::json()), res?))
                 },
             ),
         )

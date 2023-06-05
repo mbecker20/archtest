@@ -9,7 +9,7 @@ pub trait RequestResponse {
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
-#[serde(tag = "type")]
+#[serde(tag = "type", content = "data")]
 pub enum Request {
     GetVersion,
     GetServer(Id),
@@ -19,4 +19,10 @@ pub enum Request {
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Id {
     pub id: String,
+}
+
+impl Id {
+    pub fn new(id: impl Into<String>) -> Id {
+        Id { id: id.into() }
+    }
 }
