@@ -8,3 +8,4 @@ edition = "2021"
 [dependencies]
 serde.workspace = true
 bson.workspace = true
+typeshare.workspace = true

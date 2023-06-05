@@ -1,7 +1,9 @@
 use serde::{Deserialize, Serialize};
+use typeshare::typeshare;
 
 use super::{Id, RequestResponse};
 
+#[typeshare]
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct GetVersion {
     pub version: String,
@@ -15,7 +17,8 @@ impl RequestResponse for GetVersion {
     }
 }
 
-pub struct GetServer;
+#[typeshare]
+pub struct GetServer {}
 
 impl RequestResponse for GetServer {
     type Request = Id;
@@ -25,7 +28,8 @@ impl RequestResponse for GetServer {
     }
 }
 
-pub struct GetDeployment;
+#[typeshare]
+pub struct GetDeployment {}
 
 impl RequestResponse for GetDeployment {
     type Request = Id;

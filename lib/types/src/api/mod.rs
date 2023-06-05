@@ -1,4 +1,5 @@
 use serde::{de::DeserializeOwned, Deserialize, Serialize};
+use typeshare::typeshare;
 
 pub mod requests;
 
@@ -8,6 +9,7 @@ pub trait RequestResponse {
     fn req_type() -> &'static str;
 }
 
+#[typeshare]
 #[derive(Serialize, Deserialize, Debug, Clone)]
 #[serde(tag = "type", content = "data")]
 pub enum Request {
@@ -16,6 +18,7 @@ pub enum Request {
     GetDeployment(Id),
 }
 
+#[typeshare]
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Id {
     pub id: String,
