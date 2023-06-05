@@ -2,8 +2,16 @@
 members = ["client", "server", "lib/types"]
 
 [workspace.dependencies]
+types = { path = "lib/types" }
 tokio = { version = "1.28", features = ["full"] }
+axum = { version = "0.6", features = ["json", "ws", "headers"] }
+reqwest = { version = "0.11", features = ["json"] }
 serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
 anyhow = "1.0"
 dotenv = "0.15"
 envy = "0.4"
+mungos = "0.3.20"
+bson = "2.6.1"
+log = "0.4"
+simple_logger = "4.1"

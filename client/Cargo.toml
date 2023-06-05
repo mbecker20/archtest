@@ -6,3 +6,12 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+types.workspace = true
+reqwest.workspace = true
+tokio.workspace = true
+anyhow.workspace = true
+log.workspace = true
+simple_logger.workspace = true
+dotenv.workspace = true
+serde.workspace = true
+envy.workspace = true

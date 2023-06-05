@@ -23,7 +23,32 @@
 		{
 			"type": "cargo",
 			"command": "run",
-			"label": "rust: cargo run"
-		}
+			"label": "run server",
+			"options": {
+				"cwd": "./server"
+			},
+			"presentation": {
+				"group": "start"
+			}
+		},
+		{
+			"type": "cargo",
+			"command": "run",
+			"label": "run client",
+			"options": {
+				"cwd": "./client"
+			},
+			"presentation": {
+				"group": "start"
+			}
+		},
+		{
+			"label": "start dev",
+			"dependsOn": [
+				"run server",
+				"run client"
+			],
+			"problemMatcher": []
+		},
 	]
 }
