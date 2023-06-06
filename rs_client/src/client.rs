@@ -1,7 +1,7 @@
 use anyhow::{anyhow, Context};
 use reqwest::StatusCode;
 use serde_json::json;
-use types::api::{HasResponse, HasReqType};
+use types::api::HasResponse;
 
 pub struct Client {
     reqwest: reqwest::Client,
@@ -16,10 +16,7 @@ impl Client {
         }
     }
 
-    pub async fn request<T: HasResponse + HasReqType>(
-        &self,
-        request: T,
-    ) -> anyhow::Result<T::Response> {
+    pub async fn request<T: HasResponse>(&self, request: T) -> anyhow::Result<T::Response> {
         let req_type = T::req_type();
         trace!("sending request | type: {req_type} | body: {request:?}");
         let res = self

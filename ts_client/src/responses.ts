@@ -1,11 +1,11 @@
-import { GetBuild, GetDeployment, GetServer, GetVersionResponse } from "./types"
+import { GetBuildResponse, GetDeploymentResponse, GetServerReponse, GetVersionResponse } from "./types"
 
 export type Responses = {
 	GetVersion: GetVersionResponse;
-	GetServer: GetServer;
-	GetBuild: GetBuild;
+	GetServer: GetServerReponse;
+	GetBuild: GetBuildResponse;
 } & DeploymentResponses;
 
 export type DeploymentResponses = {
-	GetDeployment: GetDeployment
+	GetDeployment: GetDeploymentResponse
 }

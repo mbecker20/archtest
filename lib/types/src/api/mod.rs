@@ -7,9 +7,6 @@ pub mod requests;
 #[async_trait::async_trait]
 pub trait HasResponse: Serialize + std::fmt::Debug {
     type Response: DeserializeOwned + std::fmt::Debug;
-}
-
-pub trait HasReqType {
     fn req_type() -> &'static str;
 }
 
