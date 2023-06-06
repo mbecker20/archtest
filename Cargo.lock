@@ -229,22 +229,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "client"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "dotenv",
- "envy",
- "log",
- "reqwest",
- "serde",
- "serde_json",
- "simple_logger",
- "tokio",
- "types",
-]
-
-[[package]]
 name = "colored"
 version = "2.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1393,8 +1377,37 @@ dependencies = [
 ]
 
 [[package]]
-name = "rs_client"
+name = "rpc_like_client"
 version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "dotenv",
+ "envy",
+ "log",
+ "reqwest",
+ "serde",
+ "serde_json",
+ "simple_logger",
+ "tokio",
+ "types",
+]
+
+[[package]]
+name = "rps_like_server"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "axum",
+ "dotenv",
+ "envy",
+ "log",
+ "mungos",
+ "serde",
+ "serde_json",
+ "simple_logger",
+ "tokio",
+ "types",
+]
 
 [[package]]
 name = "rustc_version"
@@ -1622,23 +1635,6 @@ dependencies = [
  "proc-macro2",
  "quote",
  "syn 1.0.109",
-]
-
-[[package]]
-name = "server"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "axum",
- "dotenv",
- "envy",
- "log",
- "mungos",
- "serde",
- "serde_json",
- "simple_logger",
- "tokio",
- "types",
 ]
 
 [[package]]
@@ -2495,6 +2491,14 @@ checksum = "05f360fc0b24296329c78fda852a1e9ae82de9cf7b27dae4b7f62f118f77b9ed"
 dependencies = [
  "tap",
 ]
+
+[[package]]
+name = "yerpc_client"
+version = "0.1.0"
+
+[[package]]
+name = "yerpc_server"
+version = "0.1.0"
 
 [[package]]
 name = "zstd"

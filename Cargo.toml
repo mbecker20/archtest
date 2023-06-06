@@ -1,6 +1,10 @@
 [workspace]
 members = ["axum_rpc_like/rs_client", "axum_rpc_like/server", "yerpc/rs_client", "yerpc/server", "lib/types"]
 
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+
 [workspace.dependencies]
 types = { path = "lib/types" }
 tokio = { version = "1.28", features = ["full"] }

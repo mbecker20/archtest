@@ -4,7 +4,7 @@ extern crate log;
 use client::Client;
 use serde::Deserialize;
 use simple_logger::SimpleLogger;
-use types::api::{requests, Id};
+use types::api::requests;
 
 mod client;
 
@@ -28,15 +28,21 @@ async fn main() -> anyhow::Result<()> {
 
     let client = Client::new(env.api_url);
 
-    let version = client.request::<requests::GetVersion>(()).await?.version;
+    let version = client.request(requests::GetVersion {}).await?.version;
 
     info!("server version: {version}");
 
-    let server = client.request::<requests::GetServer>(Id::new("server_id")).await?;
+    let server = client
+        .request(requests::GetServer {
+            id: "server_id".into(),
+        })
+        .await?;
 
     info!("server: {server:?}");
 
-    let deployment = client.request::<requests::GetDeployment>(Id::new("deployment_id")).await?;
+    let deployment = client
+        .request::<requests::GetDeployment>(requests::GetDeployment { id: "shit".into() })
+        .await?;
 
     info!("deployment: {deployment:?}");
 

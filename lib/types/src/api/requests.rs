@@ -1,39 +1,46 @@
 use serde::{Deserialize, Serialize};
 use typeshare::typeshare;
 
-use super::{Id, RequestResponse};
+use super::HasResponse;
 
 #[typeshare]
 #[derive(Serialize, Deserialize, Debug, Clone)]
-pub struct GetVersion {
+pub struct GetVersion {}
+
+#[typeshare]
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct GetVersionResponse {
     pub version: String,
 }
 
-impl RequestResponse for GetVersion {
-    type Request = ();
-    type Response = GetVersion;
+impl HasResponse for GetVersion {
+    type Response = GetVersionResponse;
     fn req_type() -> &'static str {
         "GetVersion"
     }
 }
 
 #[typeshare]
-pub struct GetServer {}
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct GetServer {
+    pub id: String,
+}
 
-impl RequestResponse for GetServer {
-    type Request = Id;
-    type Response = Id;
+impl HasResponse for GetServer {
+    type Response = GetServer;
     fn req_type() -> &'static str {
         "GetServer"
     }
 }
 
 #[typeshare]
-pub struct GetDeployment {}
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct GetDeployment {
+    pub id: String,
+}
 
-impl RequestResponse for GetDeployment {
-    type Request = Id;
-    type Response = Id;
+impl HasResponse for GetDeployment {
+    type Response = GetDeployment;
     fn req_type() -> &'static str {
         "GetDeployment"
     }
