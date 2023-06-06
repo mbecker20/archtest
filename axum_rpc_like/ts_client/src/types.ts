@@ -31,9 +31,9 @@ export interface Deployment {
 }
 
 export type Request = 
-	| { type: "GetVersion", data?: undefined }
-	| { type: "GetServer", data: Id }
-	| { type: "GetDeployment", data: Id };
+	| { type: "GetVersion", params?: undefined }
+	| { type: "GetServer", params: Id }
+	| { type: "GetDeployment", params: Id };
 
 export type DeploymentImage = 
 	| { type: "Build", id: string }

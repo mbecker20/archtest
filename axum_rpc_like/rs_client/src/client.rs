@@ -27,7 +27,7 @@ impl Client {
             .post(&self.api_url)
             .json(&json!({
                 "type": req_type,
-                "data": request
+                "params": request
             }))
             .send()
             .await?;

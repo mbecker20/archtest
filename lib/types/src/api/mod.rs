@@ -11,7 +11,7 @@ pub trait RequestResponse {
 
 #[typeshare]
 #[derive(Serialize, Deserialize, Debug, Clone)]
-#[serde(tag = "type", content = "data")]
+#[serde(tag = "type", content = "params")]
 pub enum Request {
     GetVersion,
     GetServer(Id),

@@ -1,5 +1,5 @@
 [workspace]
-members = ["client", "server", "lib/types"]
+members = ["axum_rpc_like/rs_client", "axum_rpc_like/server", "yerpc/rs_client", "yerpc/server", "lib/types"]
 
 [workspace.dependencies]
 types = { path = "lib/types" }
