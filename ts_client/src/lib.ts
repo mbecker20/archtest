@@ -1,5 +1,5 @@
 import { Request } from "./types";
-import { Responses } from "./response";
+import { Responses } from "./responses";
 import axios from "axios";
 
 export function make_client(base_url: string) {

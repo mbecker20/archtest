@@ -17,3 +17,4 @@ envy.workspace = true
 mungos.workspace = true
 log.workspace = true
 simple_logger.workspace = true
+async-trait.workspace = true

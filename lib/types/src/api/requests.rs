@@ -26,8 +26,14 @@ pub struct GetServer {
     pub id: String,
 }
 
+#[typeshare]
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct GetServerReponse {
+    pub id: String,
+}
+
 impl HasResponse for GetServer {
-    type Response = GetServer;
+    type Response = GetServerReponse;
 }
 
 impl_has_req_type!(GetServer);
@@ -43,3 +49,15 @@ impl HasResponse for GetDeployment {
 }
 
 impl_has_req_type!(GetDeployment);
+
+#[typeshare]
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct GetBuild {
+    pub id: String,
+}
+
+impl HasResponse for GetBuild {
+    type Response = GetBuild;
+}
+
+impl_has_req_type!(GetBuild);

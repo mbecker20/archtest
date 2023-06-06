@@ -8,6 +8,7 @@
     "start": "tsc && node build/main.js"
   },
   "dependencies": {
+    "@tanstack/react-query": "^4.29.12",
     "axios": "^1.4.0"
   },
   "devDependencies": {
