@@ -2,6 +2,7 @@ use serde::{Deserialize, Serialize};
 use typeshare::typeshare;
 
 use super::HasResponse;
+use crate::impl_has_req_type;
 
 #[typeshare]
 #[derive(Serialize, Deserialize, Debug, Clone)]
@@ -15,10 +16,9 @@ pub struct GetVersionResponse {
 
 impl HasResponse for GetVersion {
     type Response = GetVersionResponse;
-    fn req_type() -> &'static str {
-        "GetVersion"
-    }
 }
+
+impl_has_req_type!(GetVersion);
 
 #[typeshare]
 #[derive(Serialize, Deserialize, Debug, Clone)]
@@ -28,10 +28,9 @@ pub struct GetServer {
 
 impl HasResponse for GetServer {
     type Response = GetServer;
-    fn req_type() -> &'static str {
-        "GetServer"
-    }
 }
+
+impl_has_req_type!(GetServer);
 
 #[typeshare]
 #[derive(Serialize, Deserialize, Debug, Clone)]
@@ -41,7 +40,6 @@ pub struct GetDeployment {
 
 impl HasResponse for GetDeployment {
     type Response = GetDeployment;
-    fn req_type() -> &'static str {
-        "GetDeployment"
-    }
 }
+
+impl_has_req_type!(GetDeployment);

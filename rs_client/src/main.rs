@@ -41,7 +41,7 @@ async fn main() -> anyhow::Result<()> {
     info!("server: {server:?}");
 
     let deployment = client
-        .request::<requests::GetDeployment>(requests::GetDeployment { id: "shit".into() })
+        .request(requests::GetDeployment { id: "shit".into() })
         .await?;
 
     info!("deployment: {deployment:?}");

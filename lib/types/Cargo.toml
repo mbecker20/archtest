@@ -9,3 +9,5 @@ edition = "2021"
 serde.workspace = true
 bson.workspace = true
 typeshare.workspace = true
+async-trait.workspace = true
+anyhow.workspace = true

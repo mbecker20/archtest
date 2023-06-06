@@ -1,5 +1,5 @@
 [package]
-name = "rps_like_server"
+name = "rs_client"
 version = "0.1.0"
 edition = "2021"
 
@@ -7,13 +7,12 @@ edition = "2021"
 
 [dependencies]
 types.workspace = true
+reqwest.workspace = true
 tokio.workspace = true
-axum.workspace = true
-serde.workspace = true
-serde_json.workspace = true
 anyhow.workspace = true
-dotenv.workspace = true
-envy.workspace = true
-mungos.workspace = true
 log.workspace = true
 simple_logger.workspace = true
+dotenv.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+envy.workspace = true

@@ -1,5 +1,5 @@
 [workspace]
-members = ["axum_rpc_like/rs_client", "axum_rpc_like/server", "yerpc/rs_client", "yerpc/server", "lib/types"]
+members = ["rs_client", "server", "lib/types"]
 
 [workspace.package]
 version = "0.1.0"
@@ -13,6 +13,7 @@ reqwest = { version = "0.11", features = ["json"] }
 serde = { version = "1.0", features = ["derive"] }
 yerpc = { version = "0.5", features = ["support-axum", "support-tungstenite"] }
 typescript-type-def = { version = "0.5.3", features = ["json_value"] }
+async-trait = "0.1"
 serde_json = "1.0"
 anyhow = "1.0"
 dotenv = "0.15"

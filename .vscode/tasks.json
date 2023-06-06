@@ -36,7 +36,7 @@
 			"command": "run",
 			"label": "run client",
 			"options": {
-				"cwd": "./client"
+				"cwd": "./rs_client"
 			},
 			"presentation": {
 				"group": "start"
@@ -52,7 +52,7 @@
 		},
 		{
 			"type": "shell",
-			"command": "typeshare ./lib/types --lang=typescript --output-file=./axum_rpc_like/ts_client/src/types.ts && typeshare ./lib/types --lang=typescript --output-file=./yerpc/ts_client/src/types.ts",
+			"command": "typeshare ./lib/types --lang=typescript --output-file=./ts_client/src/types.ts",
 			"label": "generate typescript types",
 			"problemMatcher": []
 		}
