@@ -7,7 +7,7 @@ macro_rules! impl_has_response {
         impl $crate::api::HasResponse for $req {
             type Response = $res;
             fn req_type() -> &'static str {
-                stringify!($t)
+                stringify!($req)
             }
         }
     };
