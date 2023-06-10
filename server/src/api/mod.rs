@@ -1,3 +1,4 @@
+use anyhow::Context;
 use derive::Resolver;
 use serde::{Deserialize, Serialize};
 use types::api::{
@@ -5,7 +6,7 @@ use types::api::{
         GetBuild, GetBuildResponse, GetDeployment, GetDeploymentResponse, GetServer,
         GetServerResponse, GetVersion, GetVersionResponse, Other, OtherResponse,
     },
-    Resolve,
+    Resolve, ResolveToString,
 };
 use typeshare::typeshare;
 
@@ -59,5 +60,15 @@ impl Resolve<Other> for AppState {
         Ok(OtherResponse {
             other: String::from("other"),
         })
+    }
+}
+
+#[async_trait::async_trait]
+impl ResolveToString<Other> for AppState {
+    async fn resolve_to_string(&self, _: Other) -> anyhow::Result<String> {
+        serde_json::to_string(&OtherResponse {
+            other: String::from("other"),
+        })
+        .context("context")
     }
 }

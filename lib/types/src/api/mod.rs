@@ -17,3 +17,8 @@ pub trait Resolve<Req: HasResponse> {
         Ok(res)
     }
 }
+
+#[async_trait::async_trait]
+pub trait ResolveToString<Req: HasResponse> {
+    async fn resolve_to_string(&self, req: Req) -> anyhow::Result<String>;
+}
