@@ -2091,6 +2091,7 @@ dependencies = [
  "async-trait",
  "bson",
  "serde",
+ "serde_json",
  "typeshare",
 ]
 

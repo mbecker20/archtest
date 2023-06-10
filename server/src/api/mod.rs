@@ -1,39 +1,50 @@
 use types::api::{
-    requests::{GetBuild, GetDeployment, GetServer},
-    Request,
+    requests::{
+        GetBuild, GetBuildResponse, GetDeployment, GetDeploymentResponse, GetServer,
+        GetServerResponse, GetVersion, GetVersionResponse,
+    },
+    Request, Resolve,
 };
 
 use crate::state::AppState;
 
-mod get_version;
-
 impl AppState {
     pub async fn handle_request(&self, request: Request) -> anyhow::Result<String> {
         match request {
-            Request::GetVersion => AppState::get_version(),
-
-            // Server
-            Request::GetServer(req) => self.get_server(req),
-
-            // Deployment
-            Request::GetDeployment(req) => self.get_deployment(req),
-
-            Request::GetBuild(req) => self.get_build(req),
+            Request::GetVersion(req) => self.resolve_to_string(req).await,
+            Request::GetServer(req) => self.resolve_to_string(req).await,
+            Request::GetDeployment(req) => self.resolve_to_string(req).await,
+            Request::GetBuild(req) => self.resolve_to_string(req).await,
         }
     }
 }
 
-impl AppState {
-
-    pub fn get_server(&self, req: GetServer) -> anyhow::Result<String> {
-        Ok(serde_json::to_string(&req)?)
+#[async_trait::async_trait]
+impl Resolve<GetVersion> for AppState {
+    async fn resolve(&self, _: GetVersion) -> anyhow::Result<GetVersionResponse> {
+        Ok(GetVersionResponse {
+            version: env!("CARGO_PKG_VERSION").to_string(),
+        })
     }
+}
 
-    pub fn get_deployment(&self, req: GetDeployment) -> anyhow::Result<String> {
-        Ok(serde_json::to_string(&req)?)
+#[async_trait::async_trait]
+impl Resolve<GetServer> for AppState {
+    async fn resolve(&self, req: GetServer) -> anyhow::Result<GetServerResponse> {
+        Ok(GetServerResponse { id: req.id })
     }
+}
 
-    pub fn get_build(&self, req: GetBuild) -> anyhow::Result<String> {
-        Ok(serde_json::to_string(&req)?)
+#[async_trait::async_trait]
+impl Resolve<GetDeployment> for AppState {
+    async fn resolve(&self, req: GetDeployment) -> anyhow::Result<GetDeploymentResponse> {
+        Ok(GetDeploymentResponse { id: req.id })
+    }
+}
+
+#[async_trait::async_trait]
+impl Resolve<GetBuild> for AppState {
+    async fn resolve(&self, req: GetBuild) -> anyhow::Result<GetBuildResponse> {
+        Ok(GetBuildResponse { id: req.id })
     }
 }

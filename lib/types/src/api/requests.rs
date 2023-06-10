@@ -25,11 +25,11 @@ pub struct GetServer {
 
 #[typeshare]
 #[derive(Serialize, Deserialize, Debug, Clone)]
-pub struct GetServerReponse {
+pub struct GetServerResponse {
     pub id: String,
 }
 
-impl_has_response!(GetServer, GetServerReponse);
+impl_has_response!(GetServer, GetServerResponse);
 
 // GET DEPLOYMENT
 #[typeshare]
