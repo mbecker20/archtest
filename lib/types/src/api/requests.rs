@@ -1,11 +1,11 @@
+use derive::Response;
 use serde::{Deserialize, Serialize};
 use typeshare::typeshare;
 
-use crate::impl_has_response;
-
 /// GET VERSION
 #[typeshare]
-#[derive(Serialize, Deserialize, Debug, Clone)]
+#[derive(Serialize, Deserialize, Debug, Clone, Response)]
+#[response(GetVersionResponse)]
 pub struct GetVersion {}
 
 #[typeshare]
@@ -14,11 +14,10 @@ pub struct GetVersionResponse {
     pub version: String,
 }
 
-impl_has_response!(GetVersion, GetVersionResponse);
-
 /// GET SERVER
 #[typeshare]
-#[derive(Serialize, Deserialize, Debug, Clone)]
+#[derive(Serialize, Deserialize, Debug, Clone, Response)]
+#[response(GetServerResponse)]
 pub struct GetServer {
     pub id: String,
 }
@@ -29,11 +28,10 @@ pub struct GetServerResponse {
     pub id: String,
 }
 
-impl_has_response!(GetServer, GetServerResponse);
-
 // GET DEPLOYMENT
 #[typeshare]
-#[derive(Serialize, Deserialize, Debug, Clone)]
+#[derive(Serialize, Deserialize, Debug, Clone, Response)]
+#[response(GetDeploymentResponse)]
 pub struct GetDeployment {
     pub id: String,
 }
@@ -44,11 +42,10 @@ pub struct GetDeploymentResponse {
     pub id: String,
 }
 
-impl_has_response!(GetDeployment, GetDeploymentResponse);
-
 /// GET BUILD
 #[typeshare]
-#[derive(Serialize, Deserialize, Debug, Clone)]
+#[derive(Serialize, Deserialize, Debug, Clone, Response)]
+#[response(GetBuildResponse)]
 pub struct GetBuild {
     pub id: String,
 }
@@ -59,4 +56,15 @@ pub struct GetBuildResponse {
     pub id: String,
 }
 
-impl_has_response!(GetBuild, GetBuildResponse);
+//
+
+#[typeshare]
+#[derive(Serialize, Deserialize, Debug, Clone, Response)]
+#[response(OtherResponse)]
+pub struct Other {}
+
+#[typeshare]
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct OtherResponse {
+    pub other: String,
+}

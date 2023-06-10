@@ -1,5 +1,5 @@
 [workspace]
-members = ["rs_client", "server", "lib/types"]
+members = ["rs_client", "server", "lib/*"]
 
 [workspace.package]
 version = "0.1.0"
@@ -7,6 +7,7 @@ edition = "2021"
 
 [workspace.dependencies]
 types = { path = "lib/types" }
+derive = { path = "lib/derive" }
 tokio = { version = "1.28", features = ["full"] }
 axum = { version = "0.6", features = ["json", "ws", "headers"] }
 reqwest = { version = "0.11", features = ["json"] }
@@ -23,3 +24,6 @@ bson = "2.6.1"
 log = "0.4"
 simple_logger = "4.1"
 typeshare = "1.0.1"
+quote = "1.0"
+proc-macro2 = "1.0"
+syn = "2.0"

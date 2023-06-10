@@ -9,7 +9,8 @@ use axum::{
 };
 use simple_logger::SimpleLogger;
 use state::AppState;
-use types::api::Request;
+
+use crate::api::Request;
 
 mod api;
 mod helpers;
@@ -39,7 +40,7 @@ async fn main() {
                 |state: State<Arc<AppState>>, Json(request): Json<Request>| async move {
                     info!("got request: {:?}", request);
                     let res = state
-                        .handle_request(request)
+                        .resolve_request(request)
                         .await
                         .map_err(|e| (StatusCode::INTERNAL_SERVER_ERROR, format!("{e:?}")));
                     if let Err(e) = &res {
