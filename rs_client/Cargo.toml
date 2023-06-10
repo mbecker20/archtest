@@ -16,3 +16,4 @@ dotenv.workspace = true
 serde.workspace = true
 serde_json.workspace = true
 envy.workspace = true
+resolver_api.workspace = true

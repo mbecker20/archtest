@@ -1,4 +1,4 @@
-use derive::Response;
+use resolver_api::derive::Response;
 use serde::{Deserialize, Serialize};
 use typeshare::typeshare;
 

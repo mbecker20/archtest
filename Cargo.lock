@@ -342,15 +342,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "derive"
-version = "0.1.0"
-dependencies = [
- "proc-macro2",
- "quote",
- "syn 2.0.18",
-]
-
-[[package]]
 name = "derive_more"
 version = "0.99.17"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1371,6 +1362,30 @@ dependencies = [
 ]
 
 [[package]]
+name = "resolver_api"
+version = "0.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "dddfc550f8f0ebd5def43ec007727b1df0007ab88371a21aca374652e5ee5f31"
+dependencies = [
+ "anyhow",
+ "async-trait",
+ "resolver_api_derive",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
+name = "resolver_api_derive"
+version = "0.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e7369ccba28667dc8de55a0e907029f0c8cfcbb1c6ebaa0b8b204a26f61438fa"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 2.0.18",
+]
+
+[[package]]
 name = "ring"
 version = "0.16.20"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1394,6 +1409,7 @@ dependencies = [
  "envy",
  "log",
  "reqwest",
+ "resolver_api",
  "serde",
  "serde_json",
  "simple_logger",
@@ -1636,11 +1652,11 @@ dependencies = [
  "anyhow",
  "async-trait",
  "axum",
- "derive",
  "dotenv",
  "envy",
  "log",
  "mungos",
+ "resolver_api",
  "serde",
  "serde_json",
  "simple_logger",
@@ -2099,9 +2115,8 @@ name = "types"
 version = "0.1.0"
 dependencies = [
  "anyhow",
- "async-trait",
  "bson",
- "derive",
+ "resolver_api",
  "serde",
  "serde_json",
  "typeshare",

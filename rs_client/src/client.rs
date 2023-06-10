@@ -1,7 +1,7 @@
 use anyhow::{anyhow, Context};
 use reqwest::StatusCode;
+use resolver_api::HasResponse;
 use serde_json::json;
-use types::api::HasResponse;
 
 pub struct Client {
     reqwest: reqwest::Client,

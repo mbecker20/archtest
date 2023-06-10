@@ -1,12 +1,11 @@
 use anyhow::Context;
-use derive::Resolver;
+use resolver_api::{derive::Resolver, Resolve, ResolveToString};
 use serde::{Deserialize, Serialize};
 use types::api::{
     requests::{
         GetBuild, GetBuildResponse, GetDeployment, GetDeploymentResponse, GetServer,
         GetServerResponse, GetVersion, GetVersionResponse, Other, OtherResponse,
     },
-    Resolve, ResolveToString,
 };
 use typeshare::typeshare;
 

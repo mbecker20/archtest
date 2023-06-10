@@ -10,6 +10,5 @@ serde.workspace = true
 serde_json.workspace = true
 bson.workspace = true
 typeshare.workspace = true
-async-trait.workspace = true
 anyhow.workspace = true
-derive.workspace = true
+resolver_api.workspace = true
