@@ -46,5 +46,9 @@ async fn main() -> anyhow::Result<()> {
 
     info!("deployment: {deployment:?}");
 
+    let other = client.request(requests::Other {}).await?;
+
+    info!("other: {other:?}");
+
     Ok(())
 }

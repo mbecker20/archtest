@@ -2,13 +2,26 @@ use proc_macro::TokenStream;
 use quote::quote;
 use syn::{parse_macro_input, Data, DeriveInput, Type};
 
-#[proc_macro_derive(Resolver, attributes(resolver_target))]
+#[proc_macro_derive(Resolver, attributes(resolver_target, to_string_resolver))]
 pub fn derive_resolver(input: TokenStream) -> TokenStream {
     let input = parse_macro_input!(input as DeriveInput);
     let name = input.ident;
 
-    let variants = if let Data::Enum(e) = input.data {
-        e.variants.into_iter().map(|v| v.ident).collect::<Vec<_>>()
+    let (std_variant, to_string_variant) = if let Data::Enum(e) = input.data {
+        let mut std_variants = Vec::new();
+        let mut to_string_variants = Vec::new();
+        for v in e.variants {
+            let use_to_string = v
+                .attrs
+                .iter()
+                .any(|a| a.path().is_ident("to_string_resolver"));
+            if use_to_string {
+                to_string_variants.push(v.ident);
+            } else {
+                std_variants.push(v.ident);
+            }
+        }
+        (std_variants, to_string_variants)
     } else {
         panic!("expected request enum")
     };
@@ -27,7 +40,8 @@ pub fn derive_resolver(input: TokenStream) -> TokenStream {
         impl #target {
             pub async fn resolve_request(&self, request: #name) -> anyhow::Result<String> {
                 match request {
-                    #(#name::#variants(req) => self.resolve_response(req).await),*
+                    #(#name::#std_variant(req) => self.resolve_response(req).await,)*
+                    #(#name::#to_string_variant(req) => self.resolve_to_string(req).await,)*
                 }
             }
         }
@@ -52,7 +66,7 @@ pub fn has_response(input: TokenStream) -> TokenStream {
         impl crate::api::HasResponse for  #req {
             type Response = #res;
             fn req_type() -> &'static str {
-                stringify!(#res)
+                stringify!(#req)
             }
         }
     }

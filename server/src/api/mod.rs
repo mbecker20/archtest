@@ -21,6 +21,7 @@ pub enum Request {
     GetServer(GetServer),
     GetDeployment(GetDeployment),
     GetBuild(GetBuild),
+    #[to_string_resolver]
     Other(Other),
 }
 
