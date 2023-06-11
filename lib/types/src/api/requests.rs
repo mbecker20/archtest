@@ -1,10 +1,10 @@
-use resolver_api::derive::Response;
+use resolver_api::derive::Request;
 use serde::{Deserialize, Serialize};
 use typeshare::typeshare;
 
 /// GET VERSION
 #[typeshare]
-#[derive(Serialize, Deserialize, Debug, Clone, Response)]
+#[derive(Serialize, Deserialize, Debug, Clone, Request)]
 #[response(GetVersionResponse)]
 pub struct GetVersion {}
 
@@ -16,7 +16,7 @@ pub struct GetVersionResponse {
 
 /// GET SERVER
 #[typeshare]
-#[derive(Serialize, Deserialize, Debug, Clone, Response)]
+#[derive(Serialize, Deserialize, Debug, Clone, Request)]
 #[response(GetServerResponse)]
 pub struct GetServer {
     pub id: String,
@@ -30,7 +30,7 @@ pub struct GetServerResponse {
 
 // GET DEPLOYMENT
 #[typeshare]
-#[derive(Serialize, Deserialize, Debug, Clone, Response)]
+#[derive(Serialize, Deserialize, Debug, Clone, Request)]
 #[response(GetDeploymentResponse)]
 pub struct GetDeployment {
     pub id: String,
@@ -44,7 +44,7 @@ pub struct GetDeploymentResponse {
 
 /// GET BUILD
 #[typeshare]
-#[derive(Serialize, Deserialize, Debug, Clone, Response)]
+#[derive(Serialize, Deserialize, Debug, Clone, Request)]
 #[response(GetBuildResponse)]
 pub struct GetBuild {
     pub id: String,
@@ -59,7 +59,7 @@ pub struct GetBuildResponse {
 //
 
 #[typeshare]
-#[derive(Serialize, Deserialize, Debug, Clone, Response)]
+#[derive(Serialize, Deserialize, Debug, Clone, Request)]
 #[response(OtherResponse)]
 pub struct Other {}
 
