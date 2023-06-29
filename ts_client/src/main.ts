@@ -5,7 +5,7 @@ import { Request } from "./types";
 const client = make_client("http://localhost:11217/api");
 
 async function main() {
-	const res = await client.request({ type: "GetVersion" });
+	const res = await client.request({ type: "GetVersion", params: {} });
 	console.log(res);
 	const res2 = await client.request({type: "GetDeployment", params: { id: "shit" } });
 	console.log(res2);

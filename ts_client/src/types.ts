@@ -15,7 +15,7 @@ export interface GetServer {
 	id: string;
 }
 
-export interface GetServerReponse {
+export interface GetServerResponse {
 	id: string;
 }
 
@@ -36,6 +36,13 @@ export interface GetBuildResponse {
 	id: string;
 }
 
+export interface Other {
+}
+
+export interface OtherResponse {
+	other: string;
+}
+
 export interface Server {
 	_id?: string;
 	name: string;
@@ -50,13 +57,14 @@ export interface Deployment {
 	image: DeploymentImage;
 }
 
-export type Request = 
-	| { type: "GetVersion", params?: undefined }
-	| { type: "GetServer", params: GetServer }
-	| { type: "GetDeployment", params: GetDeployment }
-	| { type: "GetBuild", params: GetBuild };
-
 export type DeploymentImage = 
 	| { type: "Build", id: string }
 	| { type: "Custom", id: string };
+
+export type Request = 
+	| { type: "GetVersion", params: GetVersion }
+	| { type: "GetServer", params: GetServer }
+	| { type: "GetDeployment", params: GetDeployment }
+	| { type: "GetBuild", params: GetBuild }
+	| { type: "Other", params: Other };
 
