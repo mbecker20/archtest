@@ -3,3 +3,4 @@
 node_modules
 axum_rpc_like/ts_client/build
 yerpc/ts_client/build
+ts_client/build
